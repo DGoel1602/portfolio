@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -18,16 +18,42 @@ const SPREAD_DEG = 20;
 const X_OFFSET = 58;
 
 export default function CardFan() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState<number | null>(null);
-  const center = (CARDS.length - 1) / 2;
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = containerRef.current!.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+
+    const center = (CARDS.length - 1) / 2;
+    const mid = rect.width / 2;
+
+    let closest = 0;
+    let closestDist = Infinity;
+
+    CARDS.forEach((_, i) => {
+      const offset = i - center;
+      const cardX = mid + offset * X_OFFSET;
+      const dist = Math.abs(mouseX - cardX);
+      if (dist < closestDist) {
+        closestDist = dist;
+        closest = i;
+      }
+    });
+
+    setHovered(closest);
+  }
 
   return (
-    <div className="flex items-center justify-center min-h-[1000px] w-1/2 bg-background">
+    <div className="flex items-center justify-center min-h-[900px] w-1/2 bg-background">
       <div
-        className="relative flex items-start bottom-1/10 justify-center w-[420px] h-[320px]"
+        ref={containerRef}
+        className="relative w-[520px] h-[360px]"
+        onMouseMove={handleMouseMove}
         onMouseLeave={() => setHovered(null)}
       >
         {CARDS.map((src, i) => {
+          const center = (CARDS.length - 1) / 2;
           const offset = i - center;
           const isHovered = hovered === i;
 
@@ -38,26 +64,24 @@ export default function CardFan() {
           return (
             <motion.div
               key={i}
-              className="absolute bottom-0 left-1/2"
+              className="absolute bottom-1/8 left-1/2 pointer-events-none"
               style={{
                 transformOrigin: "bottom center",
                 marginLeft: -(CARD_W / 2),
-                willChange: "transform",
               }}
               animate={{
                 x: baseX,
-                y: isHovered ? -148 : baseY,
+                y: isHovered ? -150 : baseY,
                 rotate: isHovered ? 0 : baseRotate,
                 scale: isHovered ? 1.18 : 1,
-                zIndex: isHovered ? 50 : 10 - Math.abs(offset),
+                zIndex: isHovered ? 100 : 10 - Math.abs(offset),
               }}
               transition={{
                 type: "spring",
-                stiffness: 380,
-                damping: 32,
+                stiffness: 320,
+                damping: 30,
                 mass: 0.7,
               }}
-              onMouseEnter={() => setHovered(i)}
             >
               <Card src={src} isHovered={isHovered} />
             </motion.div>
@@ -72,12 +96,12 @@ function Card({ src, isHovered }: { src: string; isHovered: boolean }) {
   return (
     <div
       className={`
-        relative overflow-hidden rounded-2xl cursor-pointer select-none
+        relative overflow-hidden rounded-2xl select-none
         border border-white/10
         transition-shadow duration-200
         ${isHovered
-          ? "shadow-[0_28px_56px_rgba(0,0,0,0.8),0_0_0_1.5px_rgba(255,255,255,0.25)]"
-          : "shadow-[0_6px_20px_rgba(0,0,0,0.6)]"
+          ? "shadow-[0_30px_70px_rgba(0,0,0,0.85),0_0_0_1.5px_rgba(255,255,255,0.25)]"
+          : "shadow-[0_8px_24px_rgba(0,0,0,0.65)]"
         }
       `}
       style={{ width: CARD_W, height: CARD_H }}
@@ -89,8 +113,8 @@ function Card({ src, isHovered }: { src: string; isHovered: boolean }) {
         className="object-cover pointer-events-none"
         draggable={false}
       />
-      {/* Subtle gloss sheen */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
     </div>
   );
 }
+
