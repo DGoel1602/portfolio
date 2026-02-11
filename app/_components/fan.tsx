@@ -45,7 +45,7 @@ export default function CardFan() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-[900px] w-1/2 bg-background">
+    <div className="flex items-center justify-center w-1/2 bg-background">
       <div
         ref={containerRef}
         className="relative w-[520px] h-[360px]"

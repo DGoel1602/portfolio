@@ -8,7 +8,7 @@ import { ChevronLeft, ChevronRight, Circle } from "lucide-react";
 
 // Text‑only cards
 const cards = [
-  { title: "I used to play state level cricket when I was 12!" },
+  { title: "I used to play state level U18 cricket when I was 12!" },
   { title: "I was a top 1k fortnite player when I was 14... (this ones a little more embarrassing)" },
   { title: "I've lived in 4 different coutnries (India, England, Canada, and finally here, Florida, United States!)" },
   { title: "I'm currently trying to get emerald in MCSR (Minecraft speedrunning) ranked (No luck yet tho 😔)" },
@@ -23,7 +23,7 @@ export default function CardDeck() {
   const prev = () => setIndex((i) => (i - 1 + cards.length) % cards.length);
 
   return (
-    <div className="w-1/2 h-[1000px] justify-center flex flex-col items-center gap-6 py-16 select-none">
+    <div className="w-1/2 justify-center flex flex-col items-center gap-6 py-16 select-none">
 			<h1 className="text-white text-3xl mb-6"> Random Facts </h1>
       <div className="flex mb-8 gap-4">
         <Button variant="secondary" size="icon" onClick={prev}>
