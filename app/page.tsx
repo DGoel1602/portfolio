@@ -18,8 +18,8 @@ export function AboutMe() {
   <div className="max-w-[65ch] space-y-2">
     <h2 className="font-semibold">Current work</h2>
     <p>
-      I work as a Web SWE at Knight Hacks building infrastructure for Florida’s
-      largest hackathon, research machine learning models in biomedicine analyzing
+      I work as a Web SWE and Hackathon Organizer at Knight Hacks building infrastructure for Florida’s
+      best, research machine learning models in biomedicine analyzing
       enhancer-promoter interactions, and compete in <strong> ICPC </strong> programming contests under UCF.
     </p>
   </div>
