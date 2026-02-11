@@ -1,5 +1,12 @@
 "use client";
 
+import React from "react";
+
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Trophy } from "lucide-react";
+
+
 const projects = [
   {
     title: "VeiledVoice",
@@ -70,13 +77,6 @@ export interface Project {
   hackWinner: string | null;
 }
 
-import { Separator } from "@/components/ui/separator";
-import React from "react";
-
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Trophy } from "lucide-react";
-
 export function ProjectCard({ project }: { project: Project }) {
   return (
     <Card className="w-1/2 group relative overflow-hidden border-border/50 bg-card transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
@@ -109,9 +109,9 @@ export function ProjectCard({ project }: { project: Project }) {
             </h3>
           </div>
           {project.hackWinner && (
-            <Badge className="bg-gold shrink-0 gap-1.5 border-primary/20 bg-primary/10 text-primary hover:bg-primary/15">
-              <Trophy className="h-3 w-3" />
-              <span className="hidden sm:inline">{project.hackWinner}</span>
+            <Badge className="bg-primary-foreground shrink-0 gap-1.5 border-primary/20 text-primary hover:bg-primary/15">
+              <Trophy className="h-3 w-3" color="yellow" />
+              <span className="sm:inline">{project.hackWinner}</span>
               <span className="sm:hidden">Winner</span>
             </Badge>
           )}
@@ -134,29 +134,18 @@ export default function ProjectsGrid() {
   }
 
   return (
-    <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="h-80 bg-primary-foreground flex items-center justify-center">
+    <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12" style={{ paddingTop: '90px'}}>
+      <div className="h-80 bg-primary-foreground flex items-center justify-center" style={{ paddingBottom: '24px' }}>
         <h1 className="text-6xl text-center py-12"> Projects </h1>
       </div>
       {rows.map((row, rowIndex) => (
         <React.Fragment key={rowIndex}>
-          {rowIndex > 0 && (
-            <div className="relative py-6">
-              <Separator className="bg-border/40" />
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-background px-4">
-                <div className="flex items-center gap-2">
-                  <div className="h-1 w-1 rounded-full bg-primary/40" />
-                  <div className="h-1.5 w-1.5 rounded-full bg-primary/60" />
-                  <div className="h-1 w-1 rounded-full bg-primary/40" />
-                </div>
-              </div>
-            </div>
-          )}
           <div className="flex flex-row md:flex-col gap-4 md:gap-6">
             {row.map((project) => (
               <div
                 key={project.title}
                 className="flex justify-around w-1/2 flex-1"
+								style= {{ marginTop: "30px" }}
               >
                 <ProjectCard project={project} />
               </div>
