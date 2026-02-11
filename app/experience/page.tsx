@@ -59,10 +59,14 @@ function DateBlock({ year, month, alignRight }: DateBlockProps) {
   return (
     <div
       className={`flex flex-col w-full md:w-[calc(50%-2.5rem)] items-start text-left ${
-        alignRight ? "md:items-end md:text-right" : "md:items-start md:text-left"
+        alignRight
+          ? "md:items-end md:text-right"
+          : "md:items-start md:text-left"
       }`}
     >
-      <span className="text-5xl font-bold leading-none tracking-tight">{year}</span>
+      <span className="text-5xl font-bold leading-none tracking-tight">
+        {year}
+      </span>
       <span className="text-xs uppercase tracking-widest mt-1">{month}</span>
     </div>
   );
@@ -120,7 +124,11 @@ function TimelineEntry({ experience, index }: TimelineEntryProps) {
     <div className="relative flex items-center w-full py-8">
       {/* Mobile: stacked layout */}
       <div className="flex flex-col gap-3 w-full md:hidden pl-10">
-        <DateBlock year={experience.year} month={experience.month} alignRight={false} />
+        <DateBlock
+          year={experience.year}
+          month={experience.month}
+          alignRight={false}
+        />
         <CardBlock
           title={experience.title}
           company={experience.company}
@@ -133,7 +141,11 @@ function TimelineEntry({ experience, index }: TimelineEntryProps) {
       <div className="hidden md:flex items-center w-full">
         {isLeft ? (
           <>
-            <DateBlock year={experience.year} month={experience.month} alignRight={true} />
+            <DateBlock
+              year={experience.year}
+              month={experience.month}
+              alignRight={true}
+            />
             <ConnectorDot />
             <CardBlock
               title={experience.title}
@@ -151,7 +163,11 @@ function TimelineEntry({ experience, index }: TimelineEntryProps) {
               tags={experience.tags}
             />
             <ConnectorDot />
-            <DateBlock year={experience.year} month={experience.month} alignRight={false} />
+            <DateBlock
+              year={experience.year}
+              month={experience.month}
+              alignRight={false}
+            />
           </>
         )}
       </div>
@@ -165,7 +181,9 @@ export default function ExperiencePage() {
       {/* Header */}
       <div className="max-w-4xl mx-auto px-6 pt-20 pb-10">
         <p className="text-xs uppercase tracking-widest mb-3">Career History</p>
-        <h1 className="text-5xl md:text-6xl font-bold leading-tight">Experience</h1>
+        <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+          Experience
+        </h1>
         <p className="mt-4 text-base text-muted-foreground">
           A record of the work that shaped my craft.
         </p>

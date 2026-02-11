@@ -1,48 +1,47 @@
 import ProjectCard from "./_components/projectCard";
 
-
 const projects = [
   {
     title: "VeiledVoice",
     desc: "A platform for students to ask questions during class anonymously. Includes TTS, optional anonymity, teacher responses, message flagging, and authentication.",
     image: "/projects/veiledvoice.webp",
     hackWinner: null,
-		link: "https://github.com/DGoel1602/VeiledVoice"
+    link: "https://github.com/DGoel1602/VeiledVoice",
   },
   {
     title: "RICO-32",
     desc: "A fantasy console for creating retro games in Rust. Includes a game engine, console engine, built-in IDE, sprite engine, and terminal for exporting games.",
     image: "/projects/rico.gif",
     hackWinner: null,
-		link: "https://github.com/RICO-32/RICO-32"
+    link: "https://github.com/RICO-32/RICO-32",
   },
   {
     title: "Forge",
     desc: "The backbone of Knight Hacks handling forms, permissions, hackathon data, judging, and member information.",
     image: "/projects/blade.webp",
     hackWinner: null,
-		link: "https://github.com/KnightHacks/forge"
+    link: "https://github.com/KnightHacks/forge",
   },
   {
     title: "Altimate",
     desc: "An accessibility Chrome extension that detects and automatically fixes accessibility issues on websites.",
     image: "/projects/altimate.webp",
     hackWinner: null,
-		link: "https://devpost.com/software/altimate"
+    link: "https://devpost.com/software/altimate",
   },
   {
     title: "Crimson Brawl",
     desc: "A two-player EEG powered game where players control actions like jumping, movement, kicking, punching, and dashing using jaw and head movements.",
     image: "/projects/crimson.webp",
     hackWinner: "Knight Hacks VIII",
-		link: "https://devpost.com/software/project-foxtrot-black-trigger-watchtower-omega"
+    link: "https://devpost.com/software/project-foxtrot-black-trigger-watchtower-omega",
   },
   {
     title: "ATC-trainer",
     desc: "A free training tool for aviation radio communication and airport operations practice, lowering the financial barrier to entry for aviation careers.",
     image: "/projects/atc.webp",
     hackWinner: "SwampHacks XI",
-		link: "https://devpost.com/software/atc-trainer"
+    link: "https://devpost.com/software/atc-trainer",
   },
   {
     title: "Image to Desmos Converter",
@@ -70,7 +69,7 @@ const projects = [
     desc: "A GTMK 2025 puzzle platformer where players cooperate with their past lives and use previous deaths to solve levels.",
     image: "/projects/youagain.png",
     hackWinner: null,
-		link: "https://plasman3050.itch.io/you-again"
+    link: "https://plasman3050.itch.io/you-again",
   },
 ];
 
@@ -90,9 +89,15 @@ export default function ProjectGrid() {
       style={{ maxWidth: "64rem", marginInline: "auto" }}
       className="w-full px-6 py-24"
     >
+      <div>
+        <h1 className="w-full text-6xl pb-12 text-center"> Projects </h1>
+      </div>
       {rows.map((row, rowIndex) => (
         <div key={rowIndex}>
-          <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: "2rem" }}>
+          <div
+            className="grid grid-cols-1 md:grid-cols-2"
+            style={{ gap: "2rem" }}
+          >
             {row.map((project, projectIndex) => (
               <ProjectCard
                 key={projectIndex}
@@ -119,4 +124,3 @@ export default function ProjectGrid() {
     </section>
   );
 }
-

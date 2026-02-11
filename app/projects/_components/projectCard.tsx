@@ -22,7 +22,10 @@ export default function ProjectCard({
     <Card
       className={`flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group ${link ? "cursor-pointer" : ""}`}
     >
-      <div className="relative object-cover w-full overflow-hidden" style={{ aspectRatio: "16 / 9" }}>
+      <div
+        className="relative object-cover w-full overflow-hidden"
+        style={{ aspectRatio: "16 / 9" }}
+      >
         <Image
           src={image || "/placeholder.svg"}
           alt={title}
@@ -62,4 +65,3 @@ export default function ProjectCard({
 
   return card;
 }
-
