@@ -90,7 +90,10 @@ export default function ProjectGrid() {
       className="w-full px-6 py-24"
     >
       <div>
-        <h1 className="font-bold w-full text-6xl pb-12 text-center"> Projects </h1>
+        <h1 className="font-bold w-full text-6xl pb-12 text-center">
+          {" "}
+          Projects{" "}
+        </h1>
       </div>
       {rows.map((row, rowIndex) => (
         <div key={rowIndex}>

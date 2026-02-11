@@ -21,18 +21,19 @@ export default function ProjectCard({
   desc: string;
   link: string | null;
 }) {
-	const { ref, isVisible } = useScrollReveal();
+  const { ref, isVisible } = useScrollReveal();
 
   const card = (
     <Card
-		ref={ref}
-className={`flex flex-col overflow-hidden transition-all duration-300 
+      ref={ref}
+      className={`flex flex-col overflow-hidden transition-all duration-300 
   hover:-translate-y-1 
   ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
   hover:shadow-xl 
   hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]
   group 
-  ${link ? "cursor-pointer" : ""}`}    >
+  ${link ? "cursor-pointer" : ""}`}
+    >
       <div
         className="relative object-cover w-full overflow-hidden"
         style={{ aspectRatio: "16 / 9" }}
