@@ -9,9 +9,18 @@ import { ChevronLeft, ChevronRight, Circle } from "lucide-react";
 // Text‑only cards
 const cards = [
   { title: "I used to play state level U18 cricket when I was 12!" },
-  { title: "I was a top 1k fortnite player when I was 14... (this ones a little more embarrassing)" },
-  { title: "I've lived in 4 different coutnries (India, England, Canada, and finally here, Florida, United States!)" },
-  { title: "I'm currently trying to get emerald in MCSR (Minecraft speedrunning) ranked (No luck yet tho 😔)" },
+  {
+    title:
+      "I was a top 1k fortnite player when I was 14... (this ones a little more embarrassing)",
+  },
+  {
+    title:
+      "I've lived in 4 different coutnries (India, England, Canada, and finally here, Florida, United States!)",
+  },
+  {
+    title:
+      "I'm currently trying to get emerald in MCSR (Minecraft speedrunning) ranked (No luck yet tho 😔)",
+  },
   { title: "I still haven't learnt how to swim... (Yes, I live in Florida)" },
 ];
 
@@ -24,7 +33,7 @@ export default function CardDeck() {
 
   return (
     <div className="w-1/2 justify-center flex flex-col items-center gap-6 py-16 select-none">
-			<h1 className="text-white text-3xl mb-6"> Random Facts </h1>
+      <h1 className="text-white text-3xl mb-6"> Random Facts </h1>
       <div className="flex mb-8 gap-4">
         <Button variant="secondary" size="icon" onClick={prev}>
           <ChevronLeft />
@@ -45,7 +54,7 @@ export default function CardDeck() {
           const isActive = offset === 0;
 
           const spreadX = hovered ? 36 : 24; // horizontal cascade
-          const spreadY = hovered ? 20 : 14;  // small vertical offset
+          const spreadY = hovered ? 20 : 14; // small vertical offset
 
           return (
             <motion.div
@@ -60,9 +69,9 @@ export default function CardDeck() {
               }}
               transition={{ type: "spring", stiffness: 300, damping: 28 }}
             >
-              <Card className="h-[220px] w-[520px] rounded-2xl shadow-xl border bg-secondary" >
+              <Card className="h-[220px] w-[520px] rounded-2xl shadow-xl border bg-secondary">
                 <CardContent className="h-full flex flex-col justify-around">
-									<p className="text-xl text-white font-bold">{card.title}</p>
+                  <p className="text-xl text-white font-bold">{card.title}</p>
                   <div className="text-sm text-muted-foreground">
                     Card {i + 1} of {cards.length}
                   </div>
@@ -74,10 +83,16 @@ export default function CardDeck() {
       </div>
 
       <div className="flex mt-8 gap-4">
-				{cards.map((_card, i) => {
-						return <Circle key={i} onClick={() => setIndex(i)} fill={`${i == index ? "white" : "gray"}`} className="w-3 h-3" />
-					})
-				}
+        {cards.map((_card, i) => {
+          return (
+            <Circle
+              key={i}
+              onClick={() => setIndex(i)}
+              fill={`${i == index ? "white" : "gray"}`}
+              className="w-3 h-3"
+            />
+          );
+        })}
       </div>
     </div>
   );

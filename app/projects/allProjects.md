@@ -1,0 +1,33 @@
+- VeiledVoice
+  - A platform for students to ask questions during class anonymously.
+    - TTS, optional anonimity, teacher responses, flagging messages, authentication
+  - /projects/veiledvoice.webp
+- RICO-32
+  - A fantasy console to make any and all retro games writtein in Rust. Includes a game engine, console engine, in-built IDE, sprite engine, and terminal for basic commands such as exporting final games.
+  - /projects/rico.webp
+- Forge
+  - The backbone of Knight Hacks handling forms, permissions, all data related to the hackathon, judging, member information, etc.
+  - /projects/blade.webp
+- Altimate
+  - Revolutionalizing accessibility using a chrome extention that recognizes and automatically fixes accessibility issues on websites
+  - /projects/altimate.webp
+- Crimson Brawl
+  - Our two player EEG powered game lets players use their head in order to control in game actions and movements such as jumping, moving left and right, kicking, punching, and dashing. All the controls are available just from jaw and head movements.
+  - Winner- Knight Hacks VIII
+  - /projects/crimson.webp
+- ATC-trainer
+  - Aviation-related careers often have a high financial barrier to entry. Our tool allows students and hobbyists to practice radio talk and build an understanding of airport operations at no cost.
+  - Winner- SwampHacks XI
+  - /projects/atc.webp
+- Image to Desmos converter
+  - Mathematical algorithm converting digital images into plottable equations for Desmos graphing calculator
+  - projects/lines.webp
+- Slime Simulation
+  - Mathematical simulation in unity simulating ant and slime colonies, spread, and movements.
+  - projects/slime.webp
+- Dino NEAT
+  - Implemented neuroevolution of automated topologies to create self learning neural agent that plays the google dino game, learning weights and biases through simulated evolution.
+  - projects/dino.webp
+- You, Again?
+  - A submission for the GTMK2025, a puzzle platformer with the primary premise of working together with your past lives and using their deaths as a means to solve the level
+  - projects/youagain.png

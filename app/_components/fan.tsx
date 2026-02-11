@@ -99,9 +99,10 @@ function Card({ src, isHovered }: { src: string; isHovered: boolean }) {
         relative overflow-hidden rounded-2xl select-none
         border border-white/10
         transition-shadow duration-200
-        ${isHovered
-          ? "shadow-[0_30px_70px_rgba(0,0,0,0.85),0_0_0_1.5px_rgba(255,255,255,0.25)]"
-          : "shadow-[0_8px_24px_rgba(0,0,0,0.65)]"
+        ${
+          isHovered
+            ? "shadow-[0_30px_70px_rgba(0,0,0,0.85),0_0_0_1.5px_rgba(255,255,255,0.25)]"
+            : "shadow-[0_8px_24px_rgba(0,0,0,0.65)]"
         }
       `}
       style={{ width: CARD_W, height: CARD_H }}
@@ -117,4 +118,3 @@ function Card({ src, isHovered }: { src: string; isHovered: boolean }) {
     </div>
   );
 }
-
