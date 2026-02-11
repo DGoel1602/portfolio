@@ -1,6 +1,6 @@
 "use client";
 
-import { Mouse } from "lucide-react";
+import { GitBranchPlus, Github, Mouse } from "lucide-react";
 import ParallaxBackground from "./_components/parallax";
 import Fan from "./_components/fan";
 import FunFacts from "./_components/funfacts";
@@ -11,8 +11,8 @@ export function AboutMe() {
   <p className="max-w-[60ch]">
     Hey — I’m <strong>Dhruv</strong>, a software engineer in Orlando studying
     Computer Science at the <strong>Burnett Honors College @ UCF</strong>.
-    I build systems at the intersection of people, intelligence, and infrastructure —
-    from AI research to full-stack platforms and simulations.
+    I build systems affecting people, exploring intelligence, and improving infrastructure 
+		including AI research, full-stack platforms, and simulations.
   </p>
 
   <div className="max-w-[65ch] space-y-2">
@@ -20,7 +20,7 @@ export function AboutMe() {
     <p>
       I work as a Web SWE at Knight Hacks building infrastructure for Florida’s
       largest hackathon, research machine learning models in biomedicine analyzing
-      enhancer-promoter interactions, and compete in programming contests with UCF.
+      enhancer-promoter interactions, and compete in <strong> ICPC </strong> programming contests under UCF.
     </p>
   </div>
 
@@ -37,8 +37,7 @@ export function AboutMe() {
     <h2 className="font-semibold">Interests</h2>
     <p>
       Applied machine learning, computational biology, systems design, backend
-      infrastructure, real-time applications, and interdisciplinary computing —
-      especially where computer science meets psychology.
+      infrastructure, real-time applications, and interdisciplinary computing.
     </p>
   </div>
 </section>
