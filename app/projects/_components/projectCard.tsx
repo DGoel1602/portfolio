@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   Card,
@@ -6,6 +8,7 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
+import { useScrollReveal } from "@/hooks/scroll";
 
 export default function ProjectCard({
   image,
@@ -18,10 +21,18 @@ export default function ProjectCard({
   desc: string;
   link: string | null;
 }) {
+	const { ref, isVisible } = useScrollReveal();
+
   const card = (
     <Card
-      className={`flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group ${link ? "cursor-pointer" : ""}`}
-    >
+		ref={ref}
+className={`flex flex-col overflow-hidden transition-all duration-300 
+  hover:-translate-y-1 
+  ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
+  hover:shadow-xl 
+  hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]
+  group 
+  ${link ? "cursor-pointer" : ""}`}    >
       <div
         className="relative object-cover w-full overflow-hidden"
         style={{ aspectRatio: "16 / 9" }}

@@ -1,103 +1,89 @@
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { useScrollReveal } from "@/hooks/scroll";
+import { Circle } from "lucide-react";
 
-interface Experience {
-  year: string;
-  month: string;
-  title: string;
-  company: string;
-  description: string;
-  tags?: string[];
-}
-
-const experiences: Experience[] = [
+const experiences = [
   {
-    year: "2024",
-    month: "March",
-    title: "Senior Product Designer",
-    company: "Meridian Studio",
-    description:
-      "Led end-to-end design for three flagship SaaS products. Established a design system used across 12 teams and mentored a team of four junior designers.",
-    tags: ["Design Systems", "Leadership", "SaaS"],
+    "year": "2025",
+    "month": "August",
+    "endYear": "Present",
+    "endMonth": "",
+    "isCurrent": true,
+    "title": "Software Engineering Intern",
+    "company": "Knight Hacks @ UCF",
+    "description": "Architected and hardened core backend infrastructure, implementing middleware-based DoS protections and migrating all authentication to self-hosted BetterAuth, securing 1000+ users during peak hackathon traffic. Designed and built a judging and room-assignment system coordinating 30+ judges and 900+ hackers for project evaluation. Engineered a fully dynamic custom forms platform from first principles, including a custom form format parser and JSON schema generator enabling arbitrary form creation and submissions without manual schema changes. Extended platform capabilities by reworking tRPC internals to enable automatic procedure execution on form submissions, unlocking powerful form-driven workflows across the system."
   },
   {
-    year: "2022",
-    month: "August",
-    title: "UX Engineer",
-    company: "Volta Labs",
-    description:
-      "Bridged the gap between design and engineering by building reusable component libraries in React. Partnered with PMs to run usability studies and translate insights into product decisions.",
-    tags: ["React", "Research", "Prototyping"],
+    "year": "2025",
+    "month": "May",
+    "endYear": "Present",
+    "endMonth": "",
+    "isCurrent": true,
+    "title": "Machine Learning Research Assistant",
+    "company": "University of Central Florida",
+    "description": "Developed a deep learning model to predict enhancer-promoter interaction through active neighbours in long-range genomic sequences. Leveraged Mamba’s selective state space design to efficiently model long and short-range genomic sequences across chromosomes. Achieved state-of-the-art performance in short and long-range genomic sequences, beating models like HyenaDNA and DNABERT. Improved AUROC/MCC metrics by 4-5% over existing models in datasets like Human OCR Ensembl and cell lines such as K562."
   },
   {
-    year: "2021",
-    month: "January",
-    title: "Frontend Developer",
-    company: "Kestrel Digital",
-    description:
-      "Built performant, accessible web experiences for clients across fintech and healthcare. Introduced automated visual regression testing that reduced QA cycles by 40%.",
-    tags: ["TypeScript", "Accessibility", "Testing"],
+    "year": "2025",
+    "month": "May",
+    "endYear": "Present",
+    "endMonth": "",
+    "isCurrent": true,
+    "title": "Software Engineer",
+    "company": "LiveInStyle",
+    "description": "Built and deployed a full-stack web service and platform for a retail business, serving 3,000+ monthly active users with NextJS. Engineered a responsive frontend with admin dashboards for inventory management, order tracking, and analytics with real-time updates. Integrated authentication with Better Auth, payment processing with Stripe, and Convex for efficient product data storage, plus Upstash for caching to improve retrieval speeds by 60%. Optimized performance, reducing load times by 35% through caching, CDN image delivery, and runtime lazy-loading techniques."
   },
   {
-    year: "2019",
-    month: "June",
-    title: "UI Designer",
-    company: "Folio Agency",
-    description:
-      "Crafted visual identities and digital interfaces for early-stage startups. Delivered high-fidelity Figma prototypes and collaborated closely with development teams during handoff.",
-    tags: ["Figma", "Branding", "Startups"],
-  },
-];
+    "year": "2023",
+    "month": "June",
+    "endYear": "August",
+    "endMonth": "",
+    "isCurrent": false,
+    "title": "Data Analysis Intern",
+    "company": "Vancouver Fashion Week",
+    "description": "Assisted in designing multimedia advertisements, video, and graphic content for social media campaigns, enhancing brand visibility and engagement. Automated data collection processes by developing a Python web scraper, reducing research time by 30% and enabling data-driven content decisions. Redesigned the company website for improved UX/UI, optimizing navigation and load speed, which increased click-through rates by 20%."
+  }
+]
 
-interface DateBlockProps {
-  year: string;
-  month: string;
-  alignRight: boolean;
-}
+function DateBlock({ year, month, endYear, endMonth, isCurrent, alignRight }) {
+	const { ref, isVisible } = useScrollReveal();
 
-function DateBlock({ year, month, alignRight }: DateBlockProps) {
   return (
     <div
-      className={`flex flex-col w-full md:w-[calc(50%-2.5rem)] items-start text-left ${
-        alignRight
-          ? "md:items-end md:text-right"
-          : "md:items-start md:text-left"
+			ref={ref}
+      className={`
+        ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
+				flex flex-col w-full md:w-[calc(50%-2.5rem)] items-start text-left ${
+        alignRight ? "md:items-end md:text-right" : "md:items-start md:text-left"
       }`}
     >
-      <span className="text-5xl font-bold leading-none tracking-tight">
-        {year}
+      <span className="text-5xl font-bold leading-none tracking-tight">{year}</span>
+      <span className="text-xs uppercase tracking-widest mt-1 text-muted-foreground">
+        {month} - {isCurrent ? "Present" : `${endMonth} ${endYear}`}
       </span>
-      <span className="text-xs uppercase tracking-widest mt-1">{month}</span>
     </div>
   );
 }
 
-interface CardBlockProps {
-  title: string;
-  company: string;
-  description: string;
-  tags?: string[];
-}
+function CardBlock({ title, company, description }) {
+	const { ref, isVisible } = useScrollReveal();
 
-function CardBlock({ title, company, description, tags }: CardBlockProps) {
   return (
-    <div className="w-full md:w-[calc(50%-2.5rem)]">
+    <div ref={ref} className={`
+		w-full md:w-[calc(50%-2.5rem)] hover:drop-shadow-[0_0_5px_rgba(255,255,255,0.9)]
+        transition-all duration-700 ease-out
+        ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
+				`}>
       <Card>
         <CardHeader className="pb-2">
-          <p className="text-xs uppercase tracking-widest">{company}</p>
+          <p className="text-xs uppercase tracking-widest text-muted-foreground">{company}</p>
           <CardTitle>{title}</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-sm leading-relaxed mb-4">{description}</p>
-          {tags && (
-            <div className="flex flex-wrap gap-2">
-              {tags.map((tag) => (
-                <Badge key={tag} variant="outline">
-                  {tag}
-                </Badge>
-              ))}
-            </div>
-          )}
         </CardContent>
       </Card>
     </div>
@@ -106,34 +92,28 @@ function CardBlock({ title, company, description, tags }: CardBlockProps) {
 
 function ConnectorDot() {
   return (
-    <div className="flex items-center justify-center w-20 shrink-0">
-      <div className="w-3 h-3 rounded-full border-2 bg-background ring-2 ring-border z-10" />
+    <div className="flex items-center justify-center w-20 shrink-0 z-10">
+      <Circle
+        className="text-border fill-background"
+        size={14}
+        strokeWidth={2}
+      />
     </div>
   );
 }
 
-interface TimelineEntryProps {
-  experience: Experience;
-  index: number;
-}
-
-function TimelineEntry({ experience, index }: TimelineEntryProps) {
+function TimelineEntry({ experience, index }) {
   const isLeft = index % 2 === 0;
 
   return (
     <div className="relative flex items-center w-full py-8">
       {/* Mobile: stacked layout */}
       <div className="flex flex-col gap-3 w-full md:hidden pl-10">
-        <DateBlock
-          year={experience.year}
-          month={experience.month}
-          alignRight={false}
-        />
+        <DateBlock year={experience.year} month={experience.month} endYear={experience.endYear} endMonth={experience.endMonth} isCurrent={experience.isCurrent} alignRight={false} />
         <CardBlock
           title={experience.title}
           company={experience.company}
           description={experience.description}
-          tags={experience.tags}
         />
       </div>
 
@@ -141,17 +121,12 @@ function TimelineEntry({ experience, index }: TimelineEntryProps) {
       <div className="hidden md:flex items-center w-full">
         {isLeft ? (
           <>
-            <DateBlock
-              year={experience.year}
-              month={experience.month}
-              alignRight={true}
-            />
+            <DateBlock year={experience.year} month={experience.month} endYear={experience.endYear} endMonth={experience.endMonth} isCurrent={experience.isCurrent} alignRight={true} />
             <ConnectorDot />
             <CardBlock
               title={experience.title}
               company={experience.company}
               description={experience.description}
-              tags={experience.tags}
             />
           </>
         ) : (
@@ -160,14 +135,9 @@ function TimelineEntry({ experience, index }: TimelineEntryProps) {
               title={experience.title}
               company={experience.company}
               description={experience.description}
-              tags={experience.tags}
             />
             <ConnectorDot />
-            <DateBlock
-              year={experience.year}
-              month={experience.month}
-              alignRight={false}
-            />
+            <DateBlock year={experience.year} month={experience.month} endYear={experience.endYear} endMonth={experience.endMonth} isCurrent={experience.isCurrent} alignRight={false} />
           </>
         )}
       </div>
@@ -178,24 +148,20 @@ function TimelineEntry({ experience, index }: TimelineEntryProps) {
 export default function ExperiencePage() {
   return (
     <main className="min-h-screen">
-      {/* Header */}
       <div className="max-w-4xl mx-auto px-6 pt-20 pb-10">
-        <p className="text-xs uppercase tracking-widest mb-3">Career History</p>
-        <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-          Experience
-        </h1>
-        <p className="mt-4 text-base text-muted-foreground">
-          A record of the work that shaped my craft.
-        </p>
+        <h1 className="text-5xl md:text-6xl font-bold leading-tight">Experience</h1>
       </div>
 
-      {/* Timeline */}
       <div className="max-w-4xl mx-auto px-6 pb-24 relative">
-        {/* Vertical line — desktop */}
-        <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2" />
+        <Separator
+          orientation="vertical"
+          className="hidden md:block absolute left-1/2 top-0 bottom-0 h-full -translate-x-1/2"
+        />
 
-        {/* Vertical line — mobile */}
-        <div className="md:hidden absolute left-5 top-0 bottom-0 w-px bg-border" />
+        <Separator
+          orientation="vertical"
+          className="md:hidden absolute left-5 top-0 bottom-0 h-full"
+        />
 
         {experiences.map((exp, i) => (
           <TimelineEntry key={i} experience={exp} index={i} />
