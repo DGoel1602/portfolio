@@ -53,7 +53,7 @@ const projects = [
   {
     title: "Slime Simulation",
     desc: "A Unity mathematical simulation modeling ant and slime colony movement and spread behaviors.",
-    image: "/projects/slime.webp",
+    image: "/projects/slime.gif",
     hackWinner: null,
     link: null,
   },
@@ -107,6 +107,7 @@ export default function ProjectGrid() {
                 image={project.image}
                 title={project.title}
                 desc={project.desc}
+								hack={project.hackWinner}
                 link={project.link}
               />
             ))}

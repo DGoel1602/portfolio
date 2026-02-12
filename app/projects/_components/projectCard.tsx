@@ -8,18 +8,22 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { useScrollReveal } from "@/hooks/scroll";
+import { Trophy, TrophyIcon } from "lucide-react";
 
 export default function ProjectCard({
   image,
   title,
   desc,
   link,
+	hack
 }: {
   image: string;
   title: string;
   desc: string;
   link: string | null;
+	hack: string | null;
 }) {
   const { ref, isVisible } = useScrollReveal();
 
@@ -49,6 +53,12 @@ export default function ProjectCard({
       </div>
 
       <CardHeader className="pb-1 pt-4 px-4">
+        {hack && (
+          <Badge variant="yellow" className="mb-2 w-fit">
+						<TrophyIcon />
+            {hack}
+          </Badge>
+        )}
         <CardTitle className="text-base font-semibold leading-tight text-card-foreground">
           {title}
         </CardTitle>
