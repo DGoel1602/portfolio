@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -12,17 +12,37 @@ const CARDS = [
   "/cards/5.webp",
 ];
 
-const CARD_W = 152 * 2;
-const CARD_H = 104 * 2;
+const BASE_CARD_W = 152 * 2;
+const BASE_CARD_H = 104 * 2;
 const SPREAD_DEG = 20;
-const X_OFFSET = 58;
+const BASE_X_OFFSET = 58;
 
 export default function CardFan() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState<number | null>(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    function handleResize() {
+      if (containerRef.current) {
+        const componentWidth = containerRef.current.offsetWidth;
+        const newScale = componentWidth / 520; // 520 is the original base width
+        setScale(newScale < 1 ? newScale : 1);
+      }
+    }
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const CARD_W = BASE_CARD_W * scale;
+  const CARD_H = BASE_CARD_H * scale;
+  const X_OFFSET = BASE_X_OFFSET * scale;
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-    const rect = containerRef.current!.getBoundingClientRect();
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
 
     const center = (CARDS.length - 1) / 2;
@@ -45,10 +65,10 @@ export default function CardFan() {
   }
 
   return (
-    <div className="flex items-center justify-center w-1/2">
+    <div className="flex items-center justify-center w-full lg:w-1/2 px-4">
       <div
         ref={containerRef}
-        className="relative w-[520px] h-[360px]"
+        className="relative w-full max-w-[520px] h-[420px] overflow-x-hidden lg:overflow-x-visible"
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setHovered(null)}
       >
@@ -59,19 +79,22 @@ export default function CardFan() {
 
           const baseRotate = offset * SPREAD_DEG;
           const baseX = offset * X_OFFSET;
-          const baseY = Math.abs(offset) * 10;
+          const baseY = Math.abs(offset) * 10 * scale;
+          const yHover = -150 * scale;
 
           return (
             <motion.div
               key={i}
-              className="absolute bottom-1/8 left-1/2 pointer-events-none"
+              className="absolute bottom-[100px] left-1/2 pointer-events-none"
               style={{
                 transformOrigin: "bottom center",
                 marginLeft: -(CARD_W / 2),
+                width: CARD_W,
+                height: CARD_H,
               }}
               animate={{
                 x: baseX,
-                y: isHovered ? -150 : baseY,
+                y: isHovered ? yHover : baseY,
                 rotate: isHovered ? 0 : baseRotate,
                 scale: isHovered ? 1.18 : 1,
                 zIndex: isHovered ? 100 : 10 - Math.abs(offset),
@@ -96,7 +119,7 @@ function Card({ src, isHovered }: { src: string; isHovered: boolean }) {
   return (
     <div
       className={`
-        relative overflow-hidden rounded-2xl select-none
+        relative w-full h-full overflow-hidden rounded-2xl select-none
         border border-white/10
         transition-shadow duration-200
         ${
@@ -105,7 +128,6 @@ function Card({ src, isHovered }: { src: string; isHovered: boolean }) {
             : "shadow-[0_8px_24px_rgba(0,0,0,0.65)]"
         }
       `}
-      style={{ width: CARD_W, height: CARD_H }}
     >
       <Image
         src={src}

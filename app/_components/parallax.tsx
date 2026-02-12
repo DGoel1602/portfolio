@@ -43,6 +43,7 @@ export default function ParallaxBackground() {
   const offsetY = (smoothPos.y - 0.5) * -parallaxRange;
 
   return (
+		<>
     <div
       style={{
         position: "absolute",
@@ -69,5 +70,6 @@ export default function ParallaxBackground() {
         }}
       />
     </div>
+		</>
   );
 }

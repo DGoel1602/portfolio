@@ -1,13 +1,13 @@
 "use client";
 
-import { GitBranchPlus, Github, Mouse } from "lucide-react";
+import { Github, Mouse } from "lucide-react";
 import ParallaxBackground from "./_components/parallax";
 import Fan from "./_components/fan";
 import FunFacts from "./_components/funfacts";
 
 export function AboutMe() {
   return (
-    <section className="text-xl space-y-8 w-full flex flex-col items-center text-center">
+    <section className="text-xl px-6 space-y-8 w-full flex flex-col items-center text-center">
       <p className="max-w-[60ch]">
         Hey — I’m <strong>Dhruv</strong>, a software engineer in Orlando
         studying Computer Science at the{" "}

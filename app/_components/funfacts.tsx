@@ -1,12 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Circle } from "lucide-react";
 
-// Text‑only cards
 const cards = [
   { title: "I used to play state level U18 cricket when I was 12!" },
   {
@@ -27,13 +26,35 @@ const cards = [
 export default function CardDeck() {
   const [index, setIndex] = useState(0);
   const [hovered, setHovered] = useState(false);
+  const [scale, setScale] = useState(1);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleResize() {
+      if (containerRef.current) {
+        const componentWidth = containerRef.current.offsetWidth;
+        const newScale = componentWidth / 520;
+        setScale(newScale < 1 ? newScale : 1);
+      }
+    }
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const next = () => setIndex((i) => (i + 1) % cards.length);
   const prev = () => setIndex((i) => (i - 1 + cards.length) % cards.length);
 
+  const h = 220 * scale;
+  const w = 520 * scale;
+
   return (
-    <div className="w-1/2 justify-center flex flex-col items-center gap-6 py-16 select-none">
-      <h1 className="text-white text-3xl mb-6"> Random Facts </h1>
+    <div className="w-full overflow-hidden lg:w-1/2 justify-center flex flex-col items-center gap-6 py-16 select-none px-4">
+      <h1 className="text-white text-2xl md:text-3xl mb-6 text-center">
+        {" "}
+        Random Facts{" "}
+      </h1>
       <div className="flex mb-8 gap-4">
         <Button variant="secondary" size="icon" onClick={prev}>
           <ChevronLeft />
@@ -44,22 +65,25 @@ export default function CardDeck() {
       </div>
 
       <div
-        className="relative h-[220px] w-[520px]"
+        ref={containerRef}
+        className="relative h-[220px] w-full max-w-[520px]"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
+        style={{ height: h }}
       >
         {cards.map((card, i) => {
           const offset = i - index;
           const depth = Math.abs(offset);
           const isActive = offset === 0;
 
-          const spreadX = hovered ? 36 : 24; // horizontal cascade
-          const spreadY = hovered ? 20 : 14; // small vertical offset
+          const spreadX = (hovered ? 36 : 24) * scale;
+          const spreadY = (hovered ? 20 : 14) * scale;
 
           return (
             <motion.div
               key={i}
               className="absolute inset-0"
+              style={{ width: w, height: h }}
               animate={{
                 x: offset * spreadX,
                 y: offset * spreadY,
@@ -69,9 +93,13 @@ export default function CardDeck() {
               }}
               transition={{ type: "spring", stiffness: 300, damping: 28 }}
             >
-              <Card className="h-[220px] w-[520px] rounded-2xl shadow-xl border bg-secondary">
-                <CardContent className="h-full flex flex-col justify-around">
-                  <p className="text-xl text-white font-bold">{card.title}</p>
+              <Card
+                className="h-full w-full rounded-2xl shadow-xl border bg-secondary"
+              >
+                <CardContent className="h-full flex flex-col justify-around p-4 md:p-6">
+                  <p className="text-base md:text-xl text-white font-bold">
+                    {card.title}
+                  </p>
                   <div className="text-sm text-muted-foreground">
                     Card {i + 1} of {cards.length}
                   </div>
@@ -89,7 +117,7 @@ export default function CardDeck() {
               key={i}
               onClick={() => setIndex(i)}
               fill={`${i == index ? "white" : "gray"}`}
-              className="w-3 h-3"
+              className="w-3 h-3 cursor-pointer"
             />
           );
         })}
