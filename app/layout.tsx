@@ -2,6 +2,7 @@ import { Orbitron, Quantico } from "next/font/google";
 import "./globals.css";
 import NavBar from "./_components/navbar";
 import AnimatedBackground from "./_components/bg";
+import Footer from "./_components/footer";
 
 const orbitron = Orbitron({
   variable: "--font-orbitron",
@@ -25,6 +26,7 @@ export default function RootLayout({
         <AnimatedBackground />
         <NavBar />
         {children}
+        <Footer />
       </body>
     </html>
   );
