@@ -39,7 +39,7 @@ const projects = [
   {
     title: "ATC-trainer",
     desc: "A free training tool for aviation radio communication and airport operations practice, lowering the financial barrier to entry for aviation careers.",
-    image: "/projects/atc.webp",
+    image: "/projects/atc.gif",
     hackWinner: "SwampHacks XI",
     link: "https://devpost.com/software/atc-trainer",
   },
@@ -60,7 +60,7 @@ const projects = [
   {
     title: "Dino NEAT",
     desc: "Neuroevolution of Automated Topologies implementation creating a self-learning agent that plays the Chrome Dino game using simulated evolution.",
-    image: "/projects/dino.webp",
+    image: "/projects/dino.gif",
     hackWinner: null,
     link: null,
   },
