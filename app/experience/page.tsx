@@ -42,9 +42,9 @@ const experiences = [
   {
     year: "2025",
     month: "May",
-    endYear: "Present",
-    endMonth: "",
-    isCurrent: true,
+    endYear: "2025",
+    endMonth: "July",
+    isCurrent: false,
     title: "Software Engineer",
     company: "LiveInStyle",
     description:
