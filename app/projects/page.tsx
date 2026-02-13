@@ -107,7 +107,7 @@ export default function ProjectGrid() {
                 image={project.image}
                 title={project.title}
                 desc={project.desc}
-								hack={project.hackWinner}
+                hack={project.hackWinner}
                 link={project.link}
               />
             ))}

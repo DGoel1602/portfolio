@@ -6,17 +6,17 @@ import CardBlock from "./_components/cardBlock";
 import ConnectorDot from "./_components/connecter";
 
 const experiences = [
-	{
-  year: "2025",
-  month: "September",
-  endYear: "Present",
-  endMonth: "",
-  isCurrent: true,
-  title: "Competitive Programmer",
-  company: "UCF Competitive Programming Team",
-  description:
-    "Compete in weekly mock contests and collaborative training sessions focused on advanced algorithms and problem solving. Achieved the top Division II score at the ICPC Southeast Regionals out of 100+ teams. Regularly solve problems involving graph theory, dynamic programming, greedy optimization, number theory, and data structures under strict time constraints, emphasizing correctness, efficiency, and teamwork.",
-},
+  {
+    year: "2025",
+    month: "September",
+    endYear: "Present",
+    endMonth: "",
+    isCurrent: true,
+    title: "Competitive Programmer",
+    company: "UCF Competitive Programming Team",
+    description:
+      "Compete in weekly mock contests and collaborative training sessions focused on advanced algorithms and problem solving. Achieved the top Division II score at the ICPC Southeast Regionals out of 100+ teams. Regularly solve problems involving graph theory, dynamic programming, greedy optimization, number theory, and data structures under strict time constraints, emphasizing correctness, efficiency, and teamwork.",
+  },
   {
     year: "2025",
     month: "August",

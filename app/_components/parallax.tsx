@@ -43,33 +43,33 @@ export default function ParallaxBackground() {
   const offsetY = (smoothPos.y - 0.5) * -parallaxRange;
 
   return (
-		<>
-    <div
-      style={{
-        position: "absolute",
-        inset: 0,
-        overflow: "hidden",
-        background: "#000",
-      }}
-    >
-      <img
-        src="/cool-bg.gif"
-        alt="Background"
+    <>
+      <div
         style={{
           position: "absolute",
-          top: `calc(-5% + ${offsetY}px)`,
-          left: `calc(-5% + ${offsetX}px)`,
-          width: "110%",
-          height: "110%",
-          objectFit: "cover",
-          transform: "scale(1.1)",
-          transformOrigin: "center center",
-          willChange: "top, left",
-          pointerEvents: "none",
-          userSelect: "none",
+          inset: 0,
+          overflow: "hidden",
+          background: "#000",
         }}
-      />
-    </div>
-		</>
+      >
+        <img
+          src="/cool-bg.gif"
+          alt="Background"
+          style={{
+            position: "absolute",
+            top: `calc(-5% + ${offsetY}px)`,
+            left: `calc(-5% + ${offsetX}px)`,
+            width: "110%",
+            height: "110%",
+            objectFit: "cover",
+            transform: "scale(1.1)",
+            transformOrigin: "center center",
+            willChange: "top, left",
+            pointerEvents: "none",
+            userSelect: "none",
+          }}
+        />
+      </div>
+    </>
   );
 }

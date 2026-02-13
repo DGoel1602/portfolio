@@ -17,13 +17,13 @@ export default function ProjectCard({
   title,
   desc,
   link,
-	hack
+  hack,
 }: {
   image: string;
   title: string;
   desc: string;
   link: string | null;
-	hack: string | null;
+  hack: string | null;
 }) {
   const { ref, isVisible } = useScrollReveal();
 
@@ -55,7 +55,7 @@ export default function ProjectCard({
       <CardHeader className="pb-1 pt-4 px-4">
         {hack && (
           <Badge variant="yellow" className="mb-2 w-fit">
-						<TrophyIcon />
+            <TrophyIcon />
             {hack}
           </Badge>
         )}

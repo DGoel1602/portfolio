@@ -93,9 +93,7 @@ export default function CardDeck() {
               }}
               transition={{ type: "spring", stiffness: 300, damping: 28 }}
             >
-              <Card
-                className="h-full w-full rounded-2xl shadow-xl border bg-secondary"
-              >
+              <Card className="h-full w-full rounded-2xl shadow-xl border bg-secondary">
                 <CardContent className="h-full flex flex-col justify-around p-4 md:p-6">
                   <p className="text-base md:text-xl text-white font-bold">
                     {card.title}
