@@ -4,8 +4,8 @@ const nextConfig: NextConfig = {
   redirects: async () => {
     return [
       {
-        source: '/gh',
-        destination: 'https://github.com/DGoel1602',
+        source: '/gh/:path*',
+        destination: 'https://github.com/alexanderpaolini/:path*',
         permanent: true,
       }
     ];
