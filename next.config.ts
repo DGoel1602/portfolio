@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/gh/:path*',
-        destination: 'https://github.com/alexanderpaolini/:path*',
+        destination: 'https://github.com/DGoel1602/:path*',
         permanent: true,
       }
     ];
